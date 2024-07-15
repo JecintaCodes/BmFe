@@ -43,3 +43,27 @@ export const getOneAdmin = async(adminID:any)=>{
         console.log(error)
     }
 }
+export const updateAdminImage = async(adminID:any)=>{
+    const config: any = {
+        "content-type": "multipart/form-data",
+      };
+    return axios.patch(`${URL}/:adminID/admin-update-avatar`,adminID,config).then((res)=>{
+        return res.data.data
+    })
+}
+export const updateAdminName = async(adminID:any,data:any)=>{
+    return axios.patch(`${URL}/:adminID/update-admin-name`,{adminID,data}).then((res:any)=>{
+        return res.data.data
+    })
+}
+export const updateAdminDetail = async(adminID:any,data:any)=>{
+    return axios.patch(`${URL}/:adminID/update-admin-detail`,{adminID,data}).then((res)=>{
+        return res.data.data
+    })
+}
+export const updateAdminInfo =async(adminID:any, data:any)=>{
+    const config:any = {
+        "content-type":"multipart/form-data",
+    };
+    return axios.patch(`${URL}/:adminID/update-admin-info`,{adminID,data},config)
+}

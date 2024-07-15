@@ -2,13 +2,16 @@ import { Link, useNavigate } from "react-router-dom"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
-import useBuyer from "../../components/global/jotai"
 import { signInBuyer } from "../../api/BuyerApi"
+import { useDispatch, useSelector} from "react-redux"
+import { useState } from "react"
 
 
 const SignIn = () => {
 
-  const [state, setState] = useBuyer();
+  let buyerData = useSelector((state: any) => state?.myUser);
+  const [loading,setLoading] = useState<boolean>(false)
+  // const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -22,17 +25,28 @@ const SignIn = () => {
   })
 
   const onHandleSubmission = handleSubmit(async(data:any)=>{
+    setLoading(true);
 const {email, password} = data
 console.log("handle submit", {email, password})
     signInBuyer({email, password}).then((res:any)=>{
-      setState(res)
+      buyerData(res)
       reset();
-      navigate("/store")
+      navigate("/store",{replace:true})
     })
 
+// const onHandleSubmission = handleSubmit(async (data: any) => {
+//   setLoading(true);
+//   const { email, password } = data;
+//   console.log("handle submit", { email, password });
+//   signInBuyer({ email, password }).then((res: any) => {
+//     dispatch((res)); // Use dispatch to update the state
+//     reset();
+//     navigate("/store");
+//   });
+// });
   
   })
-console.log(state)
+console.log(buyerData)
   return (
     <form 
     onSubmit={onHandleSubmission}

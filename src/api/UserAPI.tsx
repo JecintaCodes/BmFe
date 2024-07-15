@@ -42,3 +42,27 @@ export const getOneUser = async(userID:any)=>{
         console.log(error)
     }
 }
+export const updateUsernImage = async(userID:any)=>{
+    const config: any = {
+        "content-type": "multipart/form-data",
+      };
+    return axios.patch(`${URL}/:userID/update-image`,userID,config).then((res)=>{
+        return res.data.data
+    })
+}
+export const updateUserName = async(userID:any,data:any)=>{
+    return axios.patch(`${URL}/:userID/update-name`,{userID,data}).then((res:any)=>{
+        return res.data.data
+    })
+}
+export const updateUserDetail = async(userID:any,data:any)=>{
+    return axios.patch(`${URL}/:userID//:userID/update-detail`,{userID,data}).then((res)=>{
+        return res.data.data
+    })
+}
+export const updateUserInfo =async(userID:any, data:any)=>{
+    const config:any = {
+        "content-type":"multipart/form-data",
+    };
+    return axios.patch(`${URL}/:userID/update-info`,{userID,data},config)
+}
