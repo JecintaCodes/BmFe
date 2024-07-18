@@ -38,13 +38,13 @@ const LandingPageHeader = () => {
               placeholder="Search"       
               type="search" />
               <div className=" flex justify-center items-center gap-[30px] font-semibold small:gap-[10px] mobile:gap-[10px] ">
-                 <Link to="/auth">
+                 <Link to="/sign-up">
                  <button 
                   className="px-4 py-2 h-[40px] border-[1px] border-[#fa9608] hover:cursor-pointer hover:scale-[1.1] duration-700  transition-all rounded-[10px] text-[#fa9608] text-[15px] small:p-2 small:text-[13px] mobile:p-2 mobile:text-[13px] "
                    type="button">Register</button>
                  </Link>
 
-            <Link to="/auth">
+            <Link to="/sign-in">
             <button 
                  className="px-4 py-2 h-[40px]  bg-[#fa9608] hover:cursor-pointer hover:scale-[1.1] duration-700  transition-all rounded-[10px] text-[white] text-[15px] small:p-2 small:text-[13px] mobile:p-2 mobile:text-[13px] "
                    type="button">Log in</button>

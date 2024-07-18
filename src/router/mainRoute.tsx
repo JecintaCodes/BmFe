@@ -8,7 +8,7 @@ import CheckoutScreen from "../pages/screen/CheckoutScreen"
 // import ProductScreen from "../pages/screen/ProductScreen"
 import UserRegistration from "../pages/auth/UserRegistration"
 import AdminRegistration from "../pages/auth/AdminRegistration"
-import AuthPage from "../pages/auth/AuthPage"
+// import AuthPage from "../pages/auth/AuthPage"
 import AdminSignIN from "../pages/auth/AdminSignIN"
 import UserSignIn from "../pages/auth/UserSignIn"
 import DetailProductScree from "../pages/screen/DetailProductScree"
@@ -39,10 +39,10 @@ export const mainRoute = createBrowserRouter([
         path:"/",
         element:<LandingPage/>,
     },
-    {
-        path:"/auth",
-        element:<AuthPage/>,
-    },
+    // {
+    //     path:"/auth",
+    //     element:<AuthPage/>,
+    // },
     {
         path:"/sign-up",
         element:<Registration/>,

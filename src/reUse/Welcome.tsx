@@ -80,7 +80,7 @@ const Welcome = () => {
                 </div>
             </div>
            </div>
-         <Link to="/auth">
+         <Link to="/sign-in">
          <button className=" mobile:mt-[30px] p-[7px] w-[130px] small:ml-[100px] small:mt-[15px] h-[40px] text-[12px] font-bold bg-[#fa9608] text-[white] rounded mobile:ml-[220px] hover:scale-[1.05] transition-all duration-700 outline-none ">Lorem, ipsum.</button>
          </Link>
          </motion.div>

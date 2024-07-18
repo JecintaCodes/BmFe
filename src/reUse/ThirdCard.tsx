@@ -49,7 +49,7 @@ const ThirdCard = () => {
                 <div className="text-[15px] font-bold text-center ">{props?.title}</div>
                 <center>
                     <div className="w-[100%] text-[12px] mt-[5px] ">{props?.details} </div>
-                   <Link to="/auth">
+                   <Link to="/sign-up">
                    <button className="mt-[5px] h-[35px] p-[10px]  rounded-[30px] text-[10px] outline-none font-bold text-[white] hover:scale-[1.05] bg-[#456104]  hover:cursor-pointer transition-all duration-700 "
                 
                    >{props?.butt}</button>

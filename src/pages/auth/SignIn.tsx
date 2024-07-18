@@ -3,9 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
 import { signInBuyer } from "../../api/BuyerApi"
-import { useDispatch, useSelector} from "react-redux"
+import { useSelector} from "react-redux"
 import { useState } from "react"
-import UserHistory from "react-router-dom"
+// import {UserHistory} from "react-router-dom"
 
 
 const SignIn = () => {
@@ -14,8 +14,9 @@ const SignIn = () => {
   const [loading,setLoading] = useState<boolean>(false)
   // const dispatch = useDispatch();
 
-  // const navigate = useNavigate();
-  const histroy = UserHistory();
+  const navigate = useNavigate();
+  // const histroy = UserHistory();
+
 
   const schema = yup.object({
     email:yup.string().required(),
@@ -33,12 +34,14 @@ console.log("handle submit", {email, password})
     signInBuyer({email, password}).then((res:any)=>{
       buyerData(res)
       reset();
-      // navigate("/store",{replace:true, relative:"route"})
-      histroy.push("/store")
+      navigate("/store")
+      // history.push('/store');
+
     })
   
   })
 console.log(buyerData)
+// console(loading)
   return (
     <form 
     onSubmit={onHandleSubmission}
