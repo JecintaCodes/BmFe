@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form"
 import { signInBuyer } from "../../api/BuyerApi"
 import { useDispatch, useSelector} from "react-redux"
 import { useState } from "react"
+import UserHistory from "react-router-dom"
 
 
 const SignIn = () => {
@@ -13,7 +14,8 @@ const SignIn = () => {
   const [loading,setLoading] = useState<boolean>(false)
   // const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const histroy = UserHistory();
 
   const schema = yup.object({
     email:yup.string().required(),
@@ -31,19 +33,9 @@ console.log("handle submit", {email, password})
     signInBuyer({email, password}).then((res:any)=>{
       buyerData(res)
       reset();
-      navigate("/store",{replace:true})
+      // navigate("/store",{replace:true, relative:"route"})
+      histroy.push("/store")
     })
-
-// const onHandleSubmission = handleSubmit(async (data: any) => {
-//   setLoading(true);
-//   const { email, password } = data;
-//   console.log("handle submit", { email, password });
-//   signInBuyer({ email, password }).then((res: any) => {
-//     dispatch((res)); // Use dispatch to update the state
-//     reset();
-//     navigate("/store");
-//   });
-// });
   
   })
 console.log(buyerData)
