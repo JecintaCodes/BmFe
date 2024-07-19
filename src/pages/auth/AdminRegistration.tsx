@@ -27,13 +27,36 @@ const AdminRegistration = () => {
     resolver:yupResolver(schema)
   })
 
-  const onHandleSubmit = handleSubmit(async(data:any)=>{
+  const onHandleSubmit = handleSubmit(async (data: any) => {
     console.log("handle submit", data)
     isLoading(true)
-    createAdmin(data).then(()=>{
+    if (!data.secretCode || data.secretCode !== "AjegunleCore") {
+      alert("Invalid secret code");
+      return;
+    }
+    createAdmin(data).then(() => {
       navigate("/admin-sign-in")
     })
   })
+  
+  
+  // const onHandleSubmit = handleSubmit(async (data: any) => {
+  //   console.log("handle submit", data)
+  //   isLoading(true)
+  //   data.secretCode = "AjegunleCore"; 
+  //   createAdmin(data).then(() => {
+  //     navigate("/admin-sign-in")
+  //   })
+  // })
+  
+
+  // const onHandleSubmit = handleSubmit(async(data:any)=>{
+  //   console.log("handle submit", data)
+  //   isLoading(true)
+  //   createAdmin(data).then(()=>{
+  //     navigate("/admin-sign-in")
+  //   })
+  // })
   console.log(loading)
 
 
@@ -62,12 +85,12 @@ const AdminRegistration = () => {
         />
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="email" placeholder="Jecinta@gmail.com  " {...register("email")}/>
+        type="email" placeholder="email  " {...register("email")}/>
         <input 
-        className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "  type="password" placeholder="jecinta@gmail.com " {...register("password")} />
+        className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "  type="password" placeholder="jpassword " {...register("password")} />
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="password" placeholder="jecinta@gmail.com " {...register("confirm")} />
+        type="password" placeholder="confirmPassword" {...register("confirm")} />
         
         <button
         

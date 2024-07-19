@@ -21,12 +21,12 @@ const UserRegistration = () => {
         type="text" placeholder="Jecinta  " />
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="email" placeholder="Jecinta@gmail.com  " />
+        type="email" placeholder="email " />
         <input 
-        className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "  type="password" placeholder="jecinta@gmail.com "/>
+        className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "  type="password" placeholder="password "/>
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="password" placeholder="jecinta@gmail.com   " />
+        type="password" placeholder="confirmPassword   " />
         
         <button className="w-[100%] h-[50px] mt-[20px] rounded p-[10px]  hover:cursor-pointer hover:scale-[1.05] transition-all duration-500 "
         type="submit"

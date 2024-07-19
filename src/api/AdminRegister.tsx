@@ -1,18 +1,28 @@
 import axios from "axios";
 
 
-const URL:string = "http://localhost:2003/api/v1"
+const URL:string = "https://boundarymarket.onrender.com/api/v1"
 
-
-export const createAdmin = async(data:any)=>{
+export const createAdmin = async(data:any) => {
     try {
-       return await axios.post(`${URL}/register-admin`,data).then((res:any)=>{
+      data.secretCode = "AjegunleCore"; // Add the secret code to the data object
+      return await axios.post(`${URL}/register-admin`, data).then((res:any) => {
         return res.data.data
-       })
+      })
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
-}
+  }
+  
+// export const createAdmin = async(data:any)=>{
+//     try {
+//        return await axios.post(`${URL}/register-admin`,data).then((res:any)=>{
+//         return res.data.data
+//        })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 export const signINAdmin = async (data:string)=>{
     try {
