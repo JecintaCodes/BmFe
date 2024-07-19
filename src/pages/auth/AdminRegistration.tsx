@@ -4,12 +4,14 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {useForm} from "react-hook-form"
 import { createAdmin } from "../../api/AdminRegister"
 import { useState } from "react"
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
 
 
 const AdminRegistration = () => {
   const [loading,isLoading] = useState<boolean>(false)
-const admin = useSelector((state:any)=>state?.myAdmin)
+//   const [code,setCode] = useState<string>("")
+//   const [error,setError] = useState(null)
+// const admin = useSelector((state:any)=>state?.myAdmin)
 
   const navigate = useNavigate();
 
@@ -32,6 +34,7 @@ const admin = useSelector((state:any)=>state?.myAdmin)
       navigate("/admin-sign-in")
     })
   })
+  console.log(loading)
 
 
   return (

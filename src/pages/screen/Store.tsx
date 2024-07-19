@@ -170,9 +170,9 @@ const Store = () => {
               <div className="w-[100%] h-[100px] mt-[-15px] ">
                 <div className="flex justify-bettween gap-[5px] items-center">
                   <img
-                  className="w-[45px] h-[45px] rounded-[50%] hover:cursor-pointer hover:scale-[1.05] duration-700 transition-all  "
+                  className="w-[50px] h-[40px] rounded-[50%] hover:cursor-pointer hover:scale-[1.05] duration-700 transition-all   "
                   src={img} alt={img} />
-                  <div>
+                  <div className="text-[12px] ">
                     <div className="text-[12px] font-bold ">{props?.name}</div>
                     <div className="text-[12px] font-bold ">{props?.email}</div>
                     <div className="text-[12px] font-bold ">_{props?.url}</div>

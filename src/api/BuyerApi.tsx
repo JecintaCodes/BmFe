@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const URL:string = "http://localhost:2003/api/v1"
+const URL:string = "https://boundarymarket.onrender.com/api/v1"
 
 
 export const createBuyer = async(data:any)=>{
@@ -16,7 +16,7 @@ export const createBuyer = async(data:any)=>{
 
 export const signInBuyer = async(data:any)=>{
     try {
-        return await axios.post(`http://localhost:2003/api/v1/sign-in-buyer`, data).then((res:any)=>{
+        return await axios.post(`${URL}/sign-in-buyer`, data).then((res:any)=>{
            
             return res.data.data
         })

@@ -3,19 +3,18 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
 import { signInBuyer } from "../../api/BuyerApi"
-import { useSelector} from "react-redux"
+// import { useSelector} from "react-redux"
 import { useState } from "react"
+import { loginBuyer } from "../../components/global/redux"
 // import {UserHistory} from "react-router-dom"
 
 
 const SignIn = () => {
 
-  let buyerData = useSelector((state: any) => state?.myUser);
+  // let buyerData = useSelector((state: any) => state?.myUser);
   const [loading,setLoading] = useState<boolean>(false)
-  // const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  // const histroy = UserHistory();
 
 
   const schema = yup.object({
@@ -32,15 +31,14 @@ const SignIn = () => {
 const {email, password} = data
 console.log("handle submit", {email, password})
     signInBuyer({email, password}).then((res:any)=>{
-      buyerData(res)
+      loginBuyer(res)
       reset();
       navigate("/store")
-      // history.push('/store');
-
     })
   
   })
-console.log(buyerData)
+  console.log(loading)
+// console.log(buyerData)
 // console(loading)
   return (
     <form 
