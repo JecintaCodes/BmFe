@@ -3,9 +3,9 @@ import axios from "axios"
 
 const URL:string = "https://boundarymarket.onrender.com/api/v1"
 
-export const createUser = async (data:any)=>{
+export const createUser = async (data:any,adminID:any)=>{
     try {
-        return await axios.post(`${URL}/:adminID/register-user`,data).then((res:any)=>{
+        return await axios.post(`${URL}/:adminID/register-user`,{data,adminID}).then((res:any)=>{
             return res.data.data
         })
     } catch (error) {

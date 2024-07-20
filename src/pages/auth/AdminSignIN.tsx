@@ -1,9 +1,41 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+import {useForm} from "react-hook-form"
+import { useState } from "react"
+import { signINAdmin } from "../../api/AdminRegister"
+import { loginAdmin } from "../../components/global/redux"
 
 const AdminSignIN = () => {
+  const navigate = useNavigate()
+  const [loading,setLoading] = useState<boolean>(false)
+
+  const schema = yup.object({
+    email: yup.string().lowercase().required(),
+    password: yup.string().required(),
+  })
+
+  const {register,handleSubmit,reset} = useForm({
+    resolver:yupResolver(schema)
+  })
+
+  const onhandleSubmit = handleSubmit(async(data:any)=>{
+    setLoading(true);
+    const {email,password} = data
+    console.log("handle submit",{email,password})
+    signINAdmin(data).then((res:any)=>{
+      loginAdmin(res)
+      reset();
+      navigate("/admin")
+    })
+
+  })
+
+  console.log(loading)
+
   return (
     <div className="w-[100%] h-[100vh] flex justify-center items-center "
-     
+    
     style={{
       background:"rgba(179, 184, 231, 0.25)",
       boxShadow:" 0 8px 32px 0 rgba( 31, 38, 135, 0.37  )",
@@ -11,16 +43,18 @@ const AdminSignIN = () => {
       WebkitBackdropFilter:" blur( 4px )",
     }}
     >
-        <div className="w-[350px] small:w-[70%] mobile:w-[70%] p-[20px]  overflow-hidden rounded bg-[white] min-h-[300px]  ">
+        <form 
+        onSubmit={onhandleSubmit}
+        className="w-[350px] small:w-[70%] mobile:w-[70%] p-[20px]  overflow-hidden rounded bg-[white] min-h-[300px]  ">
             <div className="text-center font-semibold text-[16px] text-[#b5b1b1] ">Sign In Admin</div>
           
             <input 
             className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-            type="email" placeholder="email  " />
+            type="email" placeholder="email  " {...register("email")}/>
            
             <input 
             className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-            type="password" placeholder="password  " />
+            type="password" placeholder="password "{...register("password")} />
            
             <button className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] hover:cursor-pointer hover:scale-[1.05] transition-all duration-500 "
             type="submit"
@@ -31,6 +65,7 @@ const AdminSignIN = () => {
           backdropFilter:"blur( 4px )",
           WebkitBackdropFilter:" blur( 4px )",
         }}
+      
            >Sign In</button>
             <div className="w-[100%] h-[50px] mt-[20px] flex justify-center gap-2 text-[12px] ">
                 <div>Don't have an account?</div>
@@ -39,7 +74,7 @@ const AdminSignIN = () => {
                 </Link>
             </div>
 
-        </div>
+        </form>
     </div>
   )
 }

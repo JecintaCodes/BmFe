@@ -1,6 +1,42 @@
-import { Link } from 'react-router-dom'
+import { Link,useNavigate, useParams } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import {useForm} from "react-hook-form"
+import { useState } from 'react'
+import { createUser } from '../../api/UserAPI'
 
 const UserRegistration = () => {
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const params = useParams();
+  const adminID = params.adminID;
+
+  const navigate = useNavigate();
+  
+  const schema = yup.object({
+    name:yup.string().required(),
+    email: yup.string().required().lowercase(),
+    password: yup.string().required(),
+    confirmPassword: yup.string().required().oneOf([yup.ref("password")]),
+    secretCode:yup.string().required(),
+  })
+
+  const {register,handleSubmit,reset} = useForm({
+    resolver:yupResolver(schema)
+  })
+
+  const onSubmit = handleSubmit(async(data:any)=>{
+    setLoading(true);
+    if (!data.secretCode || data.secretCode !== "AjegunleCore") {
+      alert("go and collect the right secret code from the personnel")
+    }
+    createUser(data,adminID).then(()=>{
+      reset()
+      navigate("/sign-in")
+    })
+  })
+  console.log(loading)
   return (
     <div className="w-[100%] h-[100vh] flex justify-center items-center  "
   style={{
@@ -11,22 +47,24 @@ const UserRegistration = () => {
     // border:"1px solid rgba( 255, 255, 255, 0.18 )",
   }}
     >
-    <form className="w-[350px] small:w-[80%] mobile:w-[80%] mobile:text-[14px] p-[20px] rounded bg-[white] min-h-[400px]  ">
+    <form 
+    onSubmit={onSubmit}
+    className="w-[350px] small:w-[80%] mobile:w-[80%] mobile:text-[14px] p-[20px] rounded bg-[white] min-h-[400px]  ">
         <div className="text-center font-semibold text-[18px] text-[#b5b1b1] small:text-[14px] ">Registration</div>
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
         type="text" placeholder="secretCode " />
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="text" placeholder="Jecinta  " />
+        type="text" placeholder="Jecinta  " {...register("name")} />
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="email" placeholder="email " />
+        type="email" placeholder="email "{...register("email")} />
         <input 
-        className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "  type="password" placeholder="password "/>
+        className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "  type="password" placeholder="password " {...register("password")} />
         <input 
         className="w-[100%] h-[50px] mt-[20px] rounded p-[10px] outline-none placeholder:text-[12px] placeholder:text-[#d1cdcd] bg-transparent border-[2px] text-[12px] "
-        type="password" placeholder="confirmPassword   " />
+        type="password" placeholder="confirmPassword " {...register("confirmPassword")} />
         
         <button className="w-[100%] h-[50px] mt-[20px] rounded p-[10px]  hover:cursor-pointer hover:scale-[1.05] transition-all duration-500 "
         type="submit"
