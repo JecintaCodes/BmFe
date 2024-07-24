@@ -1,5 +1,5 @@
 import { AiFillDelete, AiOutlineRight } from "react-icons/ai";
-import img from "../../assets/okra at the Farmers Market.jpeg"
+import img from "../../assets/10 fruits qui font grossir.jpeg"
 
 const CheckoutScreen = () => {
 
