@@ -34,10 +34,6 @@ import Shops from "../pages/admin/Shops"
 import Store from "../pages/screen/Store"
 import Product from "../pages/user/Product"
 
-import { useParams } from "react-router-dom"
-
-const params = useParams();
-const adminID = params.adminID;
 
 export const mainRoute = createBrowserRouter([
     {
@@ -57,7 +53,7 @@ export const mainRoute = createBrowserRouter([
         element:<SignIn/>,
     },
     {
-        path:`/${adminID}/user-sign-up`,
+        path:"/user-sign-up",
         element:<UserRegistration/>,
     },
     {

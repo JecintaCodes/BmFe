@@ -1,10 +1,11 @@
 import {AiOutlineDashboard,AiOutlineMessage,AiOutlineCalendar,AiOutlineDatabase,AiOutlineRadiusSetting, AiOutlineProfile} from "react-icons/ai"
 import { CgProfile } from "react-icons/cg";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 const AdminSlider = () => {
-    
+    const params = useParams();
+    const adminID = params.adminID
 
   return (
     <div>
@@ -51,7 +52,7 @@ const AdminSlider = () => {
                 <div>Histroy</div>
                     </div>
                    </Link>
-                   <Link to="/user-sign-up">
+                   <Link to={`/${adminID}/user-sign-up`}>
                    <div className="w-[100%] h-[50px] flex items-center gap-[10px] text-[15px] text-[silver] p-2 hover:text-[#456104] transition-all hover:cursor-pointer hover:rounded-[10px] hover:bg-[#d8d7d7] mt-[20px] ">
                 <CgProfile/>
                 <div>createUsers</div>
