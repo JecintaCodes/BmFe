@@ -24,7 +24,7 @@ export const createAdmin = async(data:any)=>{
     }
 }
 
-export const signINAdmin = async (data:string)=>{
+export const signINAdmin = async (data: any)=>{
     try {
         return await axios.post(`${URL}/sign-in-admin`,data).then((res:any)=>{
             return res.data.data

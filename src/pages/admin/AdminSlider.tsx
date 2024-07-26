@@ -1,11 +1,16 @@
 import {AiOutlineDashboard,AiOutlineMessage,AiOutlineCalendar,AiOutlineDatabase,AiOutlineRadiusSetting, AiOutlineProfile} from "react-icons/ai"
 import { CgProfile } from "react-icons/cg";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom"
 
 
 const AdminSlider = () => {
-    const params = useParams();
-    const adminID = params.adminID
+    // const params = useParams();
+    const {adminID} = useParams();
+    console.log(adminID)
+
+const user = useSelector((state: any) => state.myAdmin)
+console.log("This is state:",user)
 
   return (
     <div>
